@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBT Luxury Watches | Premium Timepieces</title>
+    
+    <!-- Luxury Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* === LUXURY GLOBAL STYLES === */
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #B8860B;
+            --light-gold: #F5E8C6;
+            --black: #0A0A0A;
+            --dark: #1A1A1A;
+            --gray: #333333;
+            --light: #F5F5F5;
+            --white: #FFFFFF;
+            --diamond: #E6F7FF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--black);
+            color: var(--light);
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        /* === LUXURY TYPOGRAPHY === */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .display-1 {
+            font-size: 5rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--light-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+        
+        .display-2 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+        
+        .text-gold {
+            color: var(--gold) !important;
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--light-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* === LUXURY NAVBAR === */
+        .luxury-navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.4s ease;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+        }
+        
+        .logo::after {
+            content: '✓';
+            font-size: 1rem;
+            color: var(--gold);
+            position: absolute;
+            top: -5px;
+            right: -15px;
+        }
+        
+        .logo span {
+            color: var(--white);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--gold);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .icon-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--gold);
+            color: var(--black);
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* === LUXURY HERO === */
+        .luxury-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(26, 26, 26, 0.7) 100%),
+                        url('https://images.unsplash.com/photo-1547996160-81e0cbd6af27?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+            position: relative;
+        }
+        
+        .hero-text {
+            max-width: 800px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--light-gold);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%);
+            color: var(--black);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .floating-watch {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(-50%) rotate(0deg); }
+            50% { transform: translateY(-55%) rotate(2deg); }
+        }
+        
+        /* === FEATURED SECTION === */
+        .featured-section {
+            padding: 8rem 0;
+            background: var(--dark);
+            position: relative;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        
+        .section-subtitle {
+            color: var(--gold);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-subtitle::before, .section-subtitle::after {
+            content: '✦';
+            margin: 0 1rem;
+            color: var(--gold);
+            font-size: 0.8rem;
+        }
+        
+        /* === WATCH CARDS === */
+        .watches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .watch-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        
+        .watch-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.1);
+        }
+        
+        .watch-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .watch-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .watch-card:hover .watch-image img {
+            transform: scale(1.05);
+        }
+        
+        .watch-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .watch-card:hover .watch-overlay {
+            opacity: 1;
+        }
+        
+        .quick-view {
+            padding: 0.8rem 1.5rem;
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quick-view:hover {
+            background: var(--white);
+            transform: scale(1.05);
+        }
+        
+        .watch-info {
+            padding: 1.5rem;
+        }
+        
+        .watch-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+        
+        .watch-price {
+            font-size: 1.5rem;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .watch-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .watch-gender {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .watch-status {
+            color: #4CAF50;
+            font-size: 0.8rem;
+        }
+        
+        /* === COLLECTION SECTIONS === */
+        .collection-section {
+            padding: 8rem 0;
+            position: relative;
+        }
+        
+        .collection-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .collection-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding: 0 2rem;
+            max-width: 1400px;
+            margin: 0 auto 3rem;
+        }
+        
+        .view-all {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .view-all:hover {
+            gap: 1rem;
+        }
+        
+        /* === SEARCH & FILTER === */
+        .search-filter {
+            max-width: 1400px;
+            margin: 0 auto 3rem;
+            padding: 0 2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .search-box {
+            flex: 1;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 10px;
+            color: var(--white);
+            font-size: 0.9rem;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+        }
+        
+        .filter-select {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 10px;
+            color: var(--white);
+            min-width: 200px;
+            cursor: pointer;
+        }
+        
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        /* === PRODUCT DETAIL === */
+        .product-detail {
+            padding: 10rem 0 5rem;
+            min-height: 100vh;
+        }
+        
+        .detail-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+        
+        .product-gallery {
+            position: sticky;
+            top: 100px;
+        }
+        
+        .main-image {
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .main-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        
+        .thumbnails {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            border-color: var(--gold);
+        }
+        
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .product-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .product-price {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+        }
+        
+        .product-description {
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .spec-label {
+            color: #999;
+        }
+        
+        .spec-value {
+            color: var(--white);
+            font-weight: 500;
+        }
+        
+        /* === ORDER FORM === */
+        .order-form {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            margin-top: 2rem;
+        }
+        
+        .form-title {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 10px;
+            color: var(--white);
+            font-size: 0.9rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.05);
+        }
+        
+        .order-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%);
+            color: var(--black);
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .order-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+        
+        .order-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* === SUCCESS MODAL === */
+        .success-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .success-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: var(--dark);
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .success-modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+            color: var(--black);
+        }
+        
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+        
+        .modal-text {
+            color: #ccc;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        /* === FOOTER === */
+        .luxury-footer {
+            background: var(--dark);
+            padding: 5rem 0 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-2px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 1200px) {
+            .display-1 {
+                font-size: 4rem;
+            }
+            
+            .floating-watch {
+                width: 400px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .detail-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .product-gallery {
+                position: static;
+            }
+            
+            .floating-watch {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--black);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .display-1 {
+                font-size: 3rem;
+            }
+            
+            .display-2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .search-filter {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-select {
+                min-width: auto;
+            }
+            
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* === ANIMATIONS === */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        
+        .shimmer-text {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            background-size: 1000px 100%;
+            animation: shimmer 3s infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .rotate-infinite {
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* === SCROLLBAR === */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--dark-gold);
+        }
+        
+        /* === LOADER === */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .watch-loader {
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+        
+        .watch-loader::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 4px solid transparent;
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: rotate 1s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="loader" id="loader">
+        <div class="watch-loader"></div>
+    </div>
+
+    <!-- Luxury Navbar -->
+    <nav class="luxury-navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <i class="fas fa-crown"></i>
+                IBT<span>WATCHES</span>
+            </a>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#featured" class="nav-link">Featured</a>
+                <a href="#collections" class="nav-link">Collections</a>
+                <a href="#all-watches" class="nav-link">All Watches</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+            
+            <div class="nav-icons">
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="Search watches...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <div class="icon-btn cart-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Luxury Hero Section -->
+    <section class="luxury-hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-text" data-aos="fade-up">
+                <h1 class="display-1 shimmer-text">Timeless <span class="text-gradient">Elegance</span></h1>
+                <h2 class="display-2">Crafted for <span class="text-gradient">Connoisseurs</span></h2>
+                <p class="hero-subtitle">Exclusive Collection of Luxury Timepieces</p>
+                <div class="hero-btns">
+                    <button class="btn-primary" onclick="scrollToSection('featured')">
+                        <i class="fas fa-gem"></i> Explore Collection
+                    </button>
+                    <button class="btn-secondary" onclick="openAllWatches()">
+                        <i class="fas fa-eye"></i> View All Watches
+                    </button>
+                </div>
+            </div>
+            
+            <div class="floating-watch" data-aos="fade-left">
+                <svg viewBox="0 0 400 400" style="filter: drop-shadow(0 20px 40px rgba(212, 175, 55, 0.3));">
+                    <circle cx="200" cy="200" r="180" fill="none" stroke="#D4AF37" stroke-width="2" opacity="0.3"/>
+                    <circle cx="200" cy="200" r="150" fill="none" stroke="#D4AF37" stroke-width="1" opacity="0.2"/>
+                    
+                    <!-- Watch Case -->
+                    <circle cx="200" cy="200" r="120" fill="#1A1A1A" stroke="#D4AF37" stroke-width="3"/>
+                    
+                    <!-- Watch Dial -->
+                    <circle cx="200" cy="200" r="110" fill="#0A0A0A" stroke="#D4AF37" stroke-width="1"/>
+                    
+                    <!-- Watch Hands -->
+                    <!-- Hour Hand -->
+                    <line x1="200" y1="200" x2="200" y2="140" stroke="#D4AF37" stroke-width="4" stroke-linecap="round">
+                        <animateTransform attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="12s" repeatCount="indefinite"/>
+                    </line>
+                    
+                    <!-- Minute Hand -->
+                    <line x1="200" y1="200" x2="200" y2="120" stroke="#D4AF37" stroke-width="3" stroke-linecap="round">
+                        <animateTransform attributeName="transform" type="rotate" from="30 200 200" to="390 200 200" dur="6s" repeatCount="indefinite"/>
+                    </line>
+                    
+                    <!-- Second Hand -->
+                    <line x1="200" y1="200" x2="200" y2="100" stroke="#F5E8C6" stroke-width="1" stroke-linecap="round">
+                        <animateTransform attributeName="transform" type="rotate" from="60 200 200" to="420 200 200" dur="1s" repeatCount="indefinite"/>
+                    </line>
+                    
+                    <!-- Brand Logo -->
+                    <text x="200" y="240" text-anchor="middle" fill="#D4AF37" font-family="Cormorant Garamond" font-size="20" font-weight="bold">
+                        IBT WATCHES
+                    </text>
+                    
+                    <!-- Crown -->
+                    <rect x="320" y="180" width="15" height="40" rx="3" fill="#D4AF37"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Watches Section -->
+    <section class="featured-section" id="featured">
+        <div class="section-header">
+            <h3 class="section-subtitle">Curated Selection</h3>
+            <h2 class="display-2">Featured <span class="text-gradient">Timepieces</span></h2>
+        </div>
+        
+        <div class="watches-grid" id="featuredWatches">
+            <!-- Watches will be loaded here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Collections Section -->
+    <section class="collection-section" id="collections">
+        <div class="collection-bg" style="background: url('https://images.unsplash.com/photo-1517462035-f2c0e5631c56?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80'); background-size: cover;"></div>
+        
+        <div class="collection-header">
+            <div>
+                <h3 class="section-subtitle">Our Collections</h3>
+                <h2 class="display-2">For <span class="text-gradient">Every</span> Occasion</h2>
+            </div>
+        </div>
+        
+        <div class="watches-grid">
+            <div class="watch-card" data-aos="fade-up">
+                <div class="watch-image">
+                    <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Men's Luxury Watch">
+                    <div class="watch-overlay">
+                        <button class="quick-view" onclick="viewProduct('mens-collection')">View Collection</button>
+                    </div>
+                </div>
+                <div class="watch-info">
+                    <h3 class="watch-title">Gentleman's Collection</h3>
+                    <p class="watch-description">Sophisticated timepieces for the modern gentleman.</p>
+                    <div class="watch-meta">
+                        <span class="watch-gender"><i class="fas fa-male"></i> Men</span>
+                        <span class="watch-status">25+ Models</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="watch-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="watch-image">
+                    <img src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Women's Luxury Watch">
+                    <div class="watch-overlay">
+                        <button class="quick-view" onclick="viewProduct('womens-collection')">View Collection</button>
+                    </div>
+                </div>
+                <div class="watch-info">
+                    <h3 class="watch-title">Elegance Collection</h3>
+                    <p class="watch-description">Graceful designs for the elegant woman.</p>
+                    <div class="watch-meta">
+                        <span class="watch-gender"><i class="fas fa-female"></i> Women</span>
+                        <span class="watch-status">18+ Models</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="watch-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="watch-image">
+                    <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Unisex Luxury Watch">
+                    <div class="watch-overlay">
+                        <button class="quick-view" onclick="viewProduct('unisex-collection')">View Collection</button>
+                    </div>
+                </div>
+                <div class="watch-info">
+                    <h3 class="watch-title">Modern Collection</h3>
+                    <p class="watch-description">Contemporary designs for all genders.</p>
+                    <div class="watch-meta">
+                        <span class="watch-gender"><i class="fas fa-user-friends"></i> Unisex</span>
+                        <span class="watch-status">12+ Models</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Watches Page -->
+    <section class="featured-section" id="all-watches" style="display: none;">
+        <div class="section-header">
+            <h3 class="section-subtitle">Complete Collection</h3>
+            <h2 class="display-2">All <span class="text-gradient">Timepieces</span></h2>
+        </div>
+        
+        <div class="search-filter">
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search by watch name...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            
+            <select class="filter-select" id="genderFilter">
+                <option value="all">All Genders</option>
+                <option value="men">Men</option>
+                <option value="women">Women</option>
+                <option value="unisex">Unisex</option>
+            </select>
+            
+            <select class="filter-select" id="priceFilter">
+                <option value="all">All Prices</option>
+                <option value="0-1000">$0 - $1,000</option>
+                <option value="1000-5000">$1,000 - $5,000</option>
+                <option value="5000-10000">$5,000 - $10,000</option>
+                <option value="10000+">$10,000+</option>
+            </select>
+        </div>
+        
+        <div class="watches-grid" id="allWatches">
+            <!-- All watches will be loaded here by JavaScript -->
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <button class="btn-secondary" onclick="loadMoreWatches()">
+                <i class="fas fa-plus"></i> Load More
+            </button>
+        </div>
+    </section>
+
+    <!-- Product Detail Page -->
+    <section class="product-detail" id="product-detail" style="display: none;">
+        <div class="detail-container">
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img id="mainImage" src="" alt="Watch">
+                </div>
+                <div class="thumbnails" id="thumbnails">
+                    <!-- Thumbnails will be added by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h1 class="product-title" id="productTitle"></h1>
+                <div class="product-price" id="productPrice"></div>
+                
+                <div class="product-meta">
+                    <span class="watch-gender" id="productGender"></span>
+                    <span class="watch-status" id="productStatus">In Stock</span>
+                </div>
+                
+                <p class="product-description" id="productDescription"></p>
+                
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Movement</span>
+                        <span class="spec-value" id="specMovement">Automatic</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Case Material</span>
+                        <span class="spec-value" id="specCase">Stainless Steel</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Water Resistance</span>
+                        <span class="spec-value" id="specWater">50m</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Crystal</span>
+                        <span class="spec-value" id="specCrystal">Sapphire</span>
+                    </div>
+                </div>
+                
+                <div class="order-form">
+                    <h3 class="form-title"><i class="fas fa-shopping-cart"></i> Place Your Order</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="customerName">Full Name *</label>
+                        <input type="text" id="customerName" class="form-control" placeholder="John Smith" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="customerPhone">Phone Number *</label>
+                        <input type="tel" id="customerPhone" class="form-control" placeholder="+998 90 123 45 67" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="customerTelegram">Telegram Username</label>
+                        <input type="text" id="customerTelegram" class="form-control" placeholder="@username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="customerAddress">Delivery Address *</label>
+                        <textarea id="customerAddress" class="form-control" rows="3" placeholder="Full delivery address" required></textarea>
+                    </div>
+                    
+                    <input type="hidden" id="productUrl">
+                    <input type="hidden" id="productId">
+                    
+                    <button class="order-btn" id="orderBtn" onclick="placeOrder()">
+                        <i class="fab fa-telegram-plane"></i> Order via Telegram
+                    </button>
+                </div>
+                
+                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(212, 175, 55, 0.05); border-radius: 10px;">
+                    <h4 style="color: var(--gold); margin-bottom: 0.5rem;">
+                        <i class="fas fa-info-circle"></i> Order Information
+                    </h4>
+                    <p style="color: #ccc; font-size: 0.9rem; line-height: 1.6;">
+                        Your order will be sent directly to our admin via Telegram. 
+                        They will contact you within 24 hours to confirm your order 
+                        and arrange delivery. No payment required upfront.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="featured-section" id="about" style="display: none;">
+        <div class="section-header">
+            <h3 class="section-subtitle">Our Story</h3>
+            <h2 class="display-2">About <span class="text-gradient">IBT Watches</span></h2>
+        </div>
+        
+        <div style="max-width: 800px; margin: 0 auto; padding: 0 2rem;">
+            <div style="background: rgba(255, 255, 255, 0.02); border-radius: 20px; padding: 3rem; border: 1px solid rgba(212, 175, 55, 0.1);">
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <div style="width: 100px; height: 100px; background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; font-size: 2.5rem; color: var(--black);">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Excellence in Timekeeping</h3>
+                    <p style="color: #ccc; line-height: 1.8;">
+                        Since our inception, IBT Watches has been dedicated to providing 
+                        the finest luxury timepieces to connoisseurs around the world. 
+                        Each watch in our collection is carefully selected for its 
+                        craftsmanship, design, and heritage.
+                    </p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    <div style="text-align: center;">
+                        <i class="fas fa-gem" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;"></i>
+                        <h4 style="margin-bottom: 0.5rem;">Premium Quality</h4>
+                        <p style="color: #ccc; font-size: 0.9rem;">Every watch is verified for authenticity and quality.</p>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <i class="fas fa-camera" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;"></i>
+                        <h4 style="margin-bottom: 0.5rem;">Real Photos</h4>
+                        <p style="color: #ccc; font-size: 0.9rem;">No stock images - all photos are of actual products.</p>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;"></i>
+                        <h4 style="margin-bottom: 0.5rem;">Secure Purchase</h4>
+                        <p style="color: #ccc; font-size: 0.9rem;">Direct communication with admin for safe transactions.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 3rem; text-align: center;">
+                    <h4 style="color: var(--gold); margin-bottom: 1rem;">Contact Information</h4>
+                    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                        <a href="https://t.me/IBTwatches" target="_blank" class="social-link">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                        <a href="https://www.instagram.com/i.b.t_watches/" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="tel:909182842" class="social-link">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                        <a href="https://t.me/boburIBT" target="_blank" class="social-link">
+                            <i class="fas fa-user-tie"></i>
+                        </a>
+                    </div>
+                    <p style="color: #ccc; margin-top: 1rem; font-size: 0.9rem;">
+                        For purchases, contact: @boburIBT on Telegram
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="modal-content">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3 class="modal-title">Order Confirmed!</h3>
+            <p class="modal-text" id="orderMessage">
+                Your order has been sent to our admin via Telegram. 
+                They will contact you shortly to confirm your order and arrange delivery.
+            </p>
+            <p style="color: var(--gold); margin-bottom: 2rem; font-weight: 600;">
+                Order ID: <span id="orderId">#IBT00123</span>
+            </p>
+            <button class="btn-primary" onclick="closeModal()">
+                <i class="fas fa-home"></i> Return to Home
+            </button>
+        </div>
+    </div>
+
+    <!-- Luxury Footer -->
+    <footer class="luxury-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-crown"></i> IBT WATCHES</h3>
+                <p style="color: #ccc; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Premium luxury watches for the discerning collector. 
+                    Excellence in every detail.
+                </p>
+                <div class="social-links">
+                    <a href="https://t.me/IBTwatches" target="_blank" class="social-link">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
+                    <a href="https://www.instagram.com/i.b.t_watches/" target="_blank" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="tel:909182842" class="social-link">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Collections</h4>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="viewCollection('men')"><i class="fas fa-chevron-right"></i> Men's Watches</a></li>
+                    <li><a href="#" onclick="viewCollection('women')"><i class="fas fa-chevron-right"></i> Women's Watches</a></li>
+                    <li><a href="#" onclick="viewCollection('unisex')"><i class="fas fa-chevron-right"></i> Unisex Watches</a></li>
+                    <li><a href="#" onclick="openAllWatches()"><i class="fas fa-chevron-right"></i> All Watches</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#featured"><i class="fas fa-chevron-right"></i> Featured</a></li>
+                    <li><a href="#" onclick="openAbout()"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#" onclick="scrollToContact()"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <ul class="footer-links">
+                    <li><a href="https://t.me/boburIBT" target="_blank"><i class="fas fa-user-tie"></i> Admin: @boburIBT</a></li>
+                    <li><a href="tel:909182842"><i class="fas fa-phone"></i> Phone: 909182842</a></li>
+                    <li><a href="https://t.me/IBTwatches" target="_blank"><i class="fab fa-telegram"></i> Channel: @IBT_watches</a></li>
+                    <li><a href="https://www.instagram.com/i.b.t_watches/" target="_blank"><i class="fab fa-instagram"></i> Instagram: @i.b.t_watches</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 IBT Luxury Watches. All rights reserved. | No exchanges or returns.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem;">Crafted with <i class="fas fa-heart" style="color: var(--gold);"></i> for watch enthusiasts</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        
+        // Sample watch data - Real luxury watches
+        const watches = [
+            {
+                id: 1,
+                name: "Rolex Submariner Date",
+                price: "$12,500",
+                originalPrice: "$15,000",
+                description: "Iconic diving watch with date function, 300m water resistance, and Oystersteel construction. Features a black dial and ceramic bezel.",
+                gender: "men",
+                image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                specs: {
+                    movement: "Automatic",
+                    case: "Oystersteel",
+                    water: "300m",
+                    crystal: "Sapphire"
+                },
+                featured: true
+            },
+            {
+                id: 2,
+                name: "Audemars Piguet Royal Oak",
+                price: "$45,000",
+                originalPrice: "$52,000",
+                description: "Revolutionary luxury sports watch with octagonal bezel and 'Tapisserie' pattern dial. Stainless steel with integrated bracelet.",
+                gender: "men",
+                image: "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                specs: {
+                    movement: "Automatic",
+                    case: "Stainless Steel",
+                    water: "50m",
+                    crystal: "Sapphire"
+                },
+                featured: true
+            },
+            {
+                id: 3,
+                name: "Patek Philippe Nautilus",
+                price: "$85,000",
+                originalPrice: "$95,000",
+                description: "Ultra-thin luxury sports watch with porthole design. Features horizontal embossed dial and integrated bracelet.",
+                gender: "unisex",
+                image: "https://images.unsplash.com/photo-1600003263720-95b45a4035d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                specs: {
+                    movement: "Automatic",
+                    case: "Stainless Steel",
+                    water: "120m",
+                    crystal: "Sapphire"
+                },
+                featured: true
+            },
+            {
+                id: 4,
+                name: "Cartier Tank Solo",
+                price: "$3,800",
+                originalPrice: "$4,200",
+                description: "Classic rectangular watch with Roman numerals and blued steel hands. Quartz movement for precision timekeeping.",
+                gender: "women",
+                image: "https://images.unsplash.com/photo-1539874754764-5a96559165b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                specs: {
+                    movement: "Quartz",
+                    case: "Stainless Steel",
+                    water: "30m",
+                    crystal: "Mineral"
+                },
+                featured: true
+            },
+            {
+                id: 5,
+                name: "Omega Speedmaster Moonwatch",
+                price: "$6,500",
+                originalPrice: "$7,200",
+                description: "The first watch worn on the moon. Manual winding chronograph with hesalite crystal and tachymeter scale.",
+                gender: "men",
+                image: "https://images.unsplash.com/photo-1568612199756-3c7e37bebe79?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                specs: {
+                    movement: "Manual",
+                    case: "Stainless Steel",
+                    water: "50m",
+                    crystal: "Hesalite"
+                },
+                featured: false
+            },
+            {
+                id: 6,
+                name: "Jaeger-LeCoultre Reverso",
+                price: "$9,800",
+                originalPrice: "$10,500",
+                description: "Art Deco inspired reversible watch case. Features a swiveling case that protects the dial and reveals a second face.",
+                gender: "unisex",
+                image: "https://images.unsplash.com/photo-1551816230-ef5deaed4a26?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                specs: {
+                    movement: "Manual",
+                    case: "Stainless Steel",
+                    water: "30m",
+                    crystal: "Sapphire"
+                },
+                featured: false
+            },
+            {
+                id: 7,
+                name: "Richard Mille RM 011",
+                price: "$185,000",
+                originalPrice: "$210,000",
+                description: "Ultra-light tourbillon chronograph with skeletonized movement. Aerospace technology meets haute horlogerie.",
+                gender: "men",
+                image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                specs: {
+                    movement: "Automatic",
+                    case: "Carbon Fiber",
+                    water: "50m",
+                    crystal: "Sapphire"
+                },
+                featured: false
+            },
+            {
+                id: 8,
+                name: "Breguet Classique",
+                price: "$22,000",
+                originalPrice: "$25,000",
+                description: "Traditional watchmaking with guilloché dial, Breguet hands, and fluted caseband. A masterpiece of classical design.",
+                gender: "unisex",
+                image: "https://images.unsplash.com/photo-1600003263720-95b45a4035d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                specs: {
+                    movement: "Automatic",
+                    case: "18k Rose Gold",
+                    water: "30m",
+                    crystal: "Sapphire"
+                },
+                featured: false
+            }
+        ];
+        
+        // DOM Elements
+        const loader = document.getElementById('loader');
+        const navLinks = document.getElementById('navLinks');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const featuredWatches = document.getElementById('featuredWatches');
+        const allWatches = document.getElementById('allWatches');
+        const searchInput = document.getElementById('searchInput');
+        const genderFilter = document.getElementById('genderFilter');
+        const priceFilter = document.getElementById('priceFilter');
+        const successModal = document.getElementById('successModal');
+        
+        // Current page state
+        let currentPage = 'home';
+        let filteredWatches = [...watches];
+        let currentProduct = null;
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide loader after 1.5 seconds
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 1500);
+            
+            // Load featured watches
+            loadFeaturedWatches();
+            
+            // Load all watches
+            loadAllWatches();
+            
+            // Setup event listeners
+            setupEventListeners();
+            
+            // Initialize scroll animations
+            initScrollAnimations();
+        });
+        
+        // Load featured watches
+        function loadFeaturedWatches() {
+            const featured = watches.filter(watch => watch.featured);
+            featuredWatches.innerHTML = '';
+            
+            featured.forEach(watch => {
+                featuredWatches.appendChild(createWatchCard(watch));
+            });
+        }
+        
+        // Load all watches
+        function loadAllWatches() {
+            allWatches.innerHTML = '';
+            
+            filteredWatches.forEach(watch => {
+                allWatches.appendChild(createWatchCard(watch, false));
+            });
+        }
+        
+        // Create watch card
+        function createWatchCard(watch, isFeatured = true) {
+            const card = document.createElement('div');
+            card.className = 'watch-card fade-in';
+            card.setAttribute('data-aos', 'fade-up');
+            
+            card.innerHTML = `
+                <div class="watch-image">
+                    <img src="${watch.image}" alt="${watch.name}" loading="lazy">
+                    <div class="watch-overlay">
+                        <button class="quick-view" onclick="viewProduct(${watch.id})">View Details</button>
+                    </div>
+                </div>
+                <div class="watch-info">
+                    <h3 class="watch-title">${watch.name}</h3>
+                    <div class="watch-price">${watch.price}</div>
+                    ${watch.originalPrice ? `<div style="text-decoration: line-through; color: #999; font-size: 0.9rem;">${watch.originalPrice}</div>` : ''}
+                    <div class="watch-meta">
+                        <span class="watch-gender">
+                            ${watch.gender === 'men' ? '<i class="fas fa-male"></i> Men' : 
+                              watch.gender === 'women' ? '<i class="fas fa-female"></i> Women' : 
+                              '<i class="fas fa-user-friends"></i> Unisex'}
+                        </span>
+                        <span class="watch-status">In Stock</span>
+                    </div>
+                    ${isFeatured ? '' : `<button class="btn-secondary" style="width: 100%; margin-top: 1rem;" onclick="viewProduct(${watch.id})">View Details</button>`}
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        // View product details
+        function viewProduct(productId) {
+            if (typeof productId === 'string') {
+                // Collection view
+                openAllWatches();
+                if (productId.includes('men')) {
+                    genderFilter.value = 'men';
+                } else if (productId.includes('women')) {
+                    genderFilter.value = 'women';
+                } else {
+                    genderFilter.value = 'unisex';
+                }
+                filterWatches();
+                return;
+            }
+            
+            // Find the product
+            currentProduct = watches.find(w => w.id === productId);
+            if (!currentProduct) return;
+            
+            // Hide all sections
+            hideAllSections();
+            
+            // Show product detail section
+            document.getElementById('product-detail').style.display = 'block';
+            currentPage = 'product';
+            
+            // Update product details
+            document.getElementById('productTitle').textContent = currentProduct.name;
+            document.getElementById('productPrice').textContent = currentProduct.price;
+            document.getElementById('productDescription').textContent = currentProduct.description;
+            
+            // Update gender
+            const genderElement = document.getElementById('productGender');
+            if (currentProduct.gender === 'men') {
+                genderElement.innerHTML = '<i class="fas fa-male"></i> Men\'s Watch';
+            } else if (currentProduct.gender === 'women') {
+                genderElement.innerHTML = '<i class="fas fa-female"></i> Women\'s Watch';
+            } else {
+                genderElement.innerHTML = '<i class="fas fa-user-friends"></i> Unisex Watch';
+            }
+            
+            // Update specs
+            document.getElementById('specMovement').textContent = currentProduct.specs.movement;
+            document.getElementById('specCase').textContent = currentProduct.specs.case;
+            document.getElementById('specWater').textContent = currentProduct.specs.water;
+            document.getElementById('specCrystal').textContent = currentProduct.specs.crystal;
+            
+            // Update main image
+            document.getElementById('mainImage').src = currentProduct.image;
+            document.getElementById('mainImage').alt = currentProduct.name;
+            
+            // Update thumbnails (simulating multiple images)
+            const thumbnails = document.getElementById('thumbnails');
+            thumbnails.innerHTML = '';
+            
+            for (let i = 0; i < 4; i++) {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = `thumbnail ${i === 0 ? 'active' : ''}`;
+                thumbnail.onclick = () => {
+                    // In real app, this would load different images
+                    document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                    thumbnail.classList.add('active');
+                    // For demo, just update the main image with a slightly different URL
+                    if (i > 0) {
+                        document.getElementById('mainImage').src = `${currentProduct.image}&t=${i}`;
+                    } else {
+                        document.getElementById('mainImage').src = currentProduct.image;
+                    }
+                };
+                
+                const img = document.createElement('img');
+                img.src = `${currentProduct.image}&t=${i}`;
+                img.alt = `${currentProduct.name} - View ${i + 1}`;
+                thumbnail.appendChild(img);
+                thumbnails.appendChild(thumbnail);
+            }
+            
+            // Set product URL and ID
+            document.getElementById('productUrl').value = window.location.href.split('#')[0] + `#product-${currentProduct.id}`;
+            document.getElementById('productId').value = currentProduct.id;
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Place order function
+        function placeOrder() {
+            const name = document.getElementById('customerName').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+            const telegram = document.getElementById('customerTelegram').value.trim();
+            const address = document.getElementById('customerAddress').value.trim();
+            const productUrl = document.getElementById('productUrl').value;
+            
+            // Validation
+            if (!name || !phone || !address) {
+                alert('Please fill in all required fields (Name, Phone, Address)');
+                return;
+            }
+            
+            // Disable order button
+            const orderBtn = document.getElementById('orderBtn');
+            orderBtn.disabled = true;
+            orderBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Generate order ID
+                const orderId = 'IBT' + Math.floor(Math.random() * 10000) + String.fromCharCode(65 + Math.floor(Math.random() * 26)) + String.fromCharCode(65 + Math.floor(Math.random() * 26));
+                
+                // Create order message for Telegram
+                const orderMessage = `
+🛍️ *NEW ORDER - IBT Luxury Watches*
+
+📦 *Product:* ${currentProduct.name}
+💰 *Price:* ${currentProduct.price}
+👤 *Customer:* ${name}
+📞 *Phone:* ${phone}
+📱 *Telegram:* ${telegram || 'Not provided'}
+📍 *Address:* ${address}
+🔗 *Product URL:* ${productUrl}
+🆔 *Order ID:* ${orderId}
+
+📍 *Admin Contact:* @boburIBT | 909182842
+                `.trim();
+                
+                // In real app, this would send to Telegram via API
+                console.log('Order details for Telegram:');
+                console.log(orderMessage);
+                
+                // Show success modal
+                document.getElementById('orderId').textContent = `#${orderId}`;
+                successModal.classList.add('active');
+                
+                // Reset form
+                document.getElementById('customerName').value = '';
+                document.getElementById('customerPhone').value = '';
+                document.getElementById('customerTelegram').value = '';
+                document.getElementById('customerAddress').value = '';
+                
+                // Re-enable button
+                orderBtn.disabled = false;
+                orderBtn.innerHTML = '<i class="fab fa-telegram-plane"></i> Order via Telegram';
+            }, 2000);
+        }
+        
+        // Filter watches
+        function filterWatches() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const gender = genderFilter.value;
+            const priceRange = priceFilter.value;
+            
+            filteredWatches = watches.filter(watch => {
+                // Search filter
+                if (searchTerm && !watch.name.toLowerCase().includes(searchTerm)) {
+                    return false;
+                }
+                
+                // Gender filter
+                if (gender !== 'all' && watch.gender !== gender) {
+                    return false;
+                }
+                
+                // Price filter
+                if (priceRange !== 'all') {
+                    const price = parseFloat(watch.price.replace(/[^0-9.-]+/g, ''));
+                    switch (priceRange) {
+                        case '0-1000':
+                            if (price > 1000) return false;
+                            break;
+                        case '1000-5000':
+                            if (price < 1000 || price > 5000) return false;
+                            break;
+                        case '5000-10000':
+                            if (price < 5000 || price > 10000) return false;
+                            break;
+                        case '10000+':
+                            if (price < 10000) return false;
+                            break;
+                    }
+                }
+                
+                return true;
+            });
+            
+            loadAllWatches();
+        }
+        
+        // Load more watches
+        function loadMoreWatches() {
+            // In a real app, this would load more from the server
+            // For demo, we'll just show an alert
+            alert('More watches would be loaded from the server in a real application.');
+        }
+        
+        // Open all watches page
+        function openAllWatches() {
+            hideAllSections();
+            document.getElementById('all-watches').style.display = 'block';
+            currentPage = 'all-watches';
+            window.scrollTo(0, 0);
+        }
+        
+        // Open about page
+        function openAbout() {
+            hideAllSections();
+            document.getElementById('about').style.display = 'block';
+            currentPage = 'about';
+            window.scrollTo(0, 0);
+        }
+        
+        // View collection
+        function viewCollection(gender) {
+            openAllWatches();
+            genderFilter.value = gender;
+            filterWatches();
+        }
+        
+        // Hide all sections
+        function hideAllSections() {
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('featured').style.display = 'none';
+            document.getElementById('collections').style.display = 'none';
+            document.getElementById('all-watches').style.display = 'none';
+            document.getElementById('product-detail').style.display = 'none';
+            document.getElementById('about').style.display = 'none';
+        }
+        
+        // Close modal
+        function closeModal() {
+            successModal.classList.remove('active');
+            // Return to home
+            showHome();
+        }
+        
+        // Show home section
+        function showHome() {
+            hideAllSections();
+            document.getElementById('home').style.display = 'block';
+            document.getElementById('featured').style.display = 'block';
+            document.getElementById('collections').style.display = 'block';
+            currentPage = 'home';
+            window.scrollTo(0, 0);
+        }
+        
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Scroll to contact
+        function scrollToContact() {
+            showHome();
+            setTimeout(() => {
+                document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+        
+        // Setup event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+            
+            // Filter event listeners
+            searchInput.addEventListener('input', filterWatches);
+            genderFilter.addEventListener('change', filterWatches);
+            priceFilter.addEventListener('change', filterWatches);
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.luxury-navbar');
+                if (window.scrollY > 100) {
+                    navbar.style.padding = '0.5rem 0';
+                    navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+                } else {
+                    navbar.style.padding = '1rem 0';
+                    navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+                }
+            });
+            
+            // Close modal on outside click
+            successModal.addEventListener('click', (e) => {
+                if (e.target === successModal) {
+                    closeModal();
+                }
+            });
+        }
+        
+        // Initialize scroll animations
+        function initScrollAnimations() {
+            // Parallax effect for hero
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const heroBg = document.querySelector('.hero-bg');
+                if (heroBg) {
+                    heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            });
+        }
+    </script>
+</body>
+</html>

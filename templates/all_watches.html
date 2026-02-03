@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Kolleksiya{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="page-hero-bg"><div class="hero-gradient"></div></div>
+    <div class="page-hero-content">
+        <nav class="breadcrumb">
+            <a href="{% url 'home' %}">Bosh Sahifa</a>
+            <span class="separator">/</span>
+            <span class="current">Kolleksiya</span>
+        </nav>
+        <h1 class="page-title">Soatlar <span class="accent">Kolleksiyasi</span></h1>
+    </div>
+</section>
+
+<section class="filters-section">
+    <div class="section-container">
+        <div class="filters-wrapper">
+            <div class="search-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" id="searchInput" placeholder="Qidirish..." value="{{ search_query }}">
+            </div>
+            
+            <div class="filter-tabs">
+                <button class="filter-btn {% if not current_category %}active{% endif %}" data-category="">Barchasi</button>
+                {% for cat in categories %}
+                <button class="filter-btn {% if current_category == cat.slug %}active{% endif %}" data-category="{{ cat.slug }}">{{ cat.name }}</button>
+                {% endfor %}
+            </div>
+            
+            <div class="gender-tabs">
+                <button class="gender-btn {% if not current_gender %}active{% endif %}" data-gender="">👫 Barchasi</button>
+                <button class="gender-btn {% if current_gender == 'male' %}active{% endif %}" data-gender="male">👨 Erkaklar</button>
+                <button class="gender-btn {% if current_gender == 'female' %}active{% endif %}" data-gender="female">👩 Ayollar</button>
+            </div>
+            
+            <div class="results-info"><span id="resultsCount">{{ watches.paginator.count }}</span> ta soat</div>
+        </div>
+    </div>
+</section>
+
+<section class="watches-section">
+    <div class="section-container">
+        <div class="watches-grid" id="watchesGrid">
+            {% for watch in watches %}
+            <div class="watch-card" data-category="{{ watch.category.slug }}" data-gender="{{ watch.gender }}" data-name="{{ watch.name|lower }}">
+                <a href="{% url 'product_detail' watch.pk %}">
+                    <div class="watch-card-image">
+                        <div class="card-badge">
+                            {% if watch.is_new %}<span class="badge new">Yangi</span>{% endif %}
+                            {% if watch.discount_percent %}<span class="badge discount">-{{ watch.discount_percent }}%</span>{% endif %}
+                        </div>
+                        {% if watch.image %}<img src="{{ watch.image.url }}" alt="{{ watch.name }}" loading="lazy">{% endif %}
+                        <div class="card-overlay"><span class="view-btn">Batafsil</span></div>
+                    </div>
+                    <div class="watch-card-info">
+                        <div class="watch-category">{{ watch.category.name }}</div>
+                        <h3 class="watch-name">{{ watch.name }}</h3>
+                        <div class="watch-price">
+                            {% if watch.old_price %}<span class="old-price">{{ watch.old_price|floatformat:0 }}</span>{% endif %}
+                            <span class="current-price">{{ watch.price|floatformat:0 }} so'm</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <div class="no-results"><h3>Soatlar topilmadi</h3></div>
+            {% endfor %}
+        </div>
+        
+        {% if watches.has_other_pages %}
+        <div class="pagination">
+            {% if watches.has_previous %}<a href="?page={{ watches.previous_page_number }}" class="page-btn">← Oldingi</a>{% endif %}
+            <span class="page-info">{{ watches.number }} / {{ watches.paginator.num_pages }}</span>
+            {% if watches.has_next %}<a href="?page={{ watches.next_page_number }}" class="page-btn">Keyingi →</a>{% endif %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const genderBtns = document.querySelectorAll('.gender-btn');
+    const watchCards = document.querySelectorAll('.watch-card');
+    const resultsCount = document.getElementById('resultsCount');
+    
+    let currentCategory = '', currentGender = '', currentSearch = '';
+    
+    searchInput.addEventListener('input', e => { currentSearch = e.target.value.toLowerCase(); filterWatches(); });
+    
+    filterBtns.forEach(btn => btn.addEventListener('click', function() {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentCategory = this.dataset.category;
+        filterWatches();
+    }));
+    
+    genderBtns.forEach(btn => btn.addEventListener('click', function() {
+        genderBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentGender = this.dataset.gender;
+        filterWatches();
+    }));
+    
+    function filterWatches() {
+        let count = 0;
+        watchCards.forEach(card => {
+            const cat = card.dataset.category, gen = card.dataset.gender, name = card.dataset.name;
+            const show = (!currentCategory || cat === currentCategory) && (!currentGender || gen === currentGender) && (!currentSearch || name.includes(currentSearch));
+            card.style.display = show ? 'block' : 'none';
+            if (show) count++;
+        });
+        resultsCount.textContent = count;
+    }
+});
+</script>
+{% endblock %}

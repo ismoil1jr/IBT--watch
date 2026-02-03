@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Bosh Sahifa{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-bg">
+        <div class="hero-gradient"></div>
+        <div class="hero-grid"></div>
+    </div>
+    
+    <div class="hero-content">
+        <div class="hero-text" data-aos="fade-up">
+            <div class="hero-badge">
+                <span>⌚</span> Premium Soatlar Kolleksiyasi
+            </div>
+            
+            <h1 class="hero-title">
+                <span class="title-line">Vaqtning</span>
+                <span class="title-line accent">Nafis San'ati</span>
+            </h1>
+            
+            <p class="hero-desc">
+                Erkaklar va ayollar uchun eng sifatli qo'l soatlari. 
+                Har bir soat — bu sizning uslubingiz va maqomingiz ifodasi.
+            </p>
+            
+            <div class="hero-features">
+                <div class="feature"><span class="feature-icon">🥇</span> Tekshirilgan sifat</div>
+                <div class="feature"><span class="feature-icon">📸</span> Haqiqiy rasmlar</div>
+                <div class="feature"><span class="feature-icon">💎</span> Premium tanlov</div>
+            </div>
+            
+            <div class="hero-actions">
+                <a href="{% url 'all_watches' %}" class="btn btn-primary">
+                    Kolleksiyani Ko'rish
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                {% if settings %}
+                <a href="https://t.me/{{ settings.telegram_username }}" target="_blank" class="btn btn-outline">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.141.121.099.154.232.17.325.015.093.034.305.019.471z"/></svg>
+                    Bog'lanish
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="hero-visual" data-aos="fade-left">
+            <div class="watch-showcase">
+                <div class="showcase-glow"></div>
+                <div class="showcase-ring"></div>
+                <div class="showcase-ring ring-2"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Us Section -->
+<section class="why-us">
+    <div class="section-container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-badge">Nima uchun biz?</span>
+            <h2 class="section-title">I.B.T Watches <span class="accent">Afzalliklari</span></h2>
+        </div>
+        
+        <div class="why-us-grid">
+            <div class="why-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="why-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <h3>Tekshirilgan Sifat</h3>
+                <p>Har bir soat sinchkovlik bilan tekshiriladi va faqat eng yaxshilari mijozlarga taqdim etiladi.</p>
+            </div>
+            
+            <div class="why-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="why-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><circle cx="12" cy="13" r="3"/></svg>
+                </div>
+                <h3>Haqiqiy Rasmlar</h3>
+                <p>Barcha rasmlar real va original. Siz ko'rgan narsa — siz olgan narsa.</p>
+            </div>
+            
+            <div class="why-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="why-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h3>Halol Narxlar</h3>
+                <p>Biz har doim adolatli va shaffof narxlarni taklif etamiz. Yashirin to'lovlar yo'q.</p>
+            </div>
+            
+            <div class="why-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="why-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <h3>Tezkor Xizmat</h3>
+                <p>Buyurtmangiz tez va xavfsiz yetkazib beriladi. Telegram orqali darhol aloqa.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trending Section -->
+<section class="trending">
+    <div class="section-container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-badge">🔥 Trend</span>
+            <h2 class="section-title">Eng <span class="accent">Mashhur</span> Soatlar</h2>
+        </div>
+        
+        <div class="watches-grid">
+            {% for watch in trending_watches %}
+            <div class="watch-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+                <a href="{% url 'product_detail' watch.pk %}" class="watch-card-link">
+                    <div class="watch-card-image">
+                        <div class="card-badge">
+                            {% if watch.is_new %}<span class="badge new">Yangi</span>{% endif %}
+                            {% if watch.discount_percent %}<span class="badge discount">-{{ watch.discount_percent }}%</span>{% endif %}
+                        </div>
+                        {% if watch.image %}
+                        <img src="{{ watch.image.url }}" alt="{{ watch.name }}" loading="lazy">
+                        {% endif %}
+                        <div class="card-overlay">
+                            <span class="view-btn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                Batafsil
+                            </span>
+                        </div>
+                    </div>
+                    <div class="watch-card-info">
+                        <div class="watch-category">{{ watch.category.name }}</div>
+                        <h3 class="watch-name">{{ watch.name }}</h3>
+                        <div class="watch-meta">
+                            <span class="watch-gender">
+                                {% if watch.gender == 'male' %}👨 Erkaklar
+                                {% elif watch.gender == 'female' %}👩 Ayollar
+                                {% else %}👫 Unisex{% endif %}
+                            </span>
+                        </div>
+                        <div class="watch-price">
+                            {% if watch.old_price %}<span class="old-price">{{ watch.old_price|floatformat:0 }} so'm</span>{% endif %}
+                            <span class="current-price">{{ watch.price|floatformat:0 }} so'm</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <p class="no-watches">Hozircha soatlar mavjud emas</p>
+            {% endfor %}
+        </div>
+        
+        <div class="section-footer" data-aos="fade-up">
+            <a href="{% url 'all_watches' %}" class="btn btn-primary btn-lg">
+                Barcha Soatlarni Ko'rish
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta">
+    <div class="cta-bg"><div class="cta-gradient"></div></div>
+    <div class="section-container">
+        <div class="cta-content" data-aos="fade-up">
+            <h2 class="cta-title">Buyurtma Berish <span class="accent">Juda Oson!</span></h2>
+            <p class="cta-desc">Telegram orqali bog'laning va o'zingizga yoqqan soatni buyurtma qiling.</p>
+            <div class="cta-actions">
+                {% if settings %}
+                <a href="https://t.me/{{ settings.telegram_username }}" target="_blank" class="btn btn-white btn-lg">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.141.121.099.154.232.17.325.015.093.034.305.019.471z"/></svg>
+                    Telegram: @{{ settings.telegram_username }}
+                </a>
+                <a href="tel:{{ settings.phone }}" class="btn btn-outline-white btn-lg">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    {{ settings.phone }}
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
