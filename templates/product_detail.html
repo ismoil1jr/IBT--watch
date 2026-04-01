@@ -119,12 +119,21 @@
                 </div>
                 
                 <!-- Order Button -->
+                {% if user.is_authenticated %}
                 <button class="btn btn-primary btn-order" id="orderBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
                     </svg>
                     <span>Buyurtma Berish</span>
                 </button>
+                {% else %}
+                <button class="btn btn-primary btn-order" id="orderBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                    <span>Buyurtma Berish</span>
+                </button>
+                {% endif %}
                 
                 <!-- Contact Info -->
                 <div class="contact-box">
@@ -165,9 +174,74 @@
                 <path d="M6 18L18 6M6 6l12 12"/>
             </svg>
         </button>
-        
+
         <div class="modal-body">
-            <!-- Order Form -->
+
+            {% if not user.is_authenticated %}
+            <!-- Auth Choice Modal (for guests) -->
+            <div class="auth-choice-container" id="authChoiceContainer">
+                <div class="modal-header">
+                    <div class="modal-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                    </div>
+                    <h2>Buyurtma Berish</h2>
+                    <p>Quyidagilardan birini tanlang</p>
+                </div>
+
+                <div class="order-product-summary">
+                    <img src="{{ watch.image.url }}" alt="{{ watch.name }}">
+                    <div class="summary-info">
+                        <h4>{{ watch.name }}</h4>
+                        <span class="summary-price">{{ watch.price|floatformat:0 }} so'm</span>
+                    </div>
+                </div>
+
+                <div class="auth-choice-options">
+                    <a href="{% url 'register' %}?next={{ request.get_full_path }}" class="auth-choice-btn primary">
+                        <div class="choice-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+                        </div>
+                        <div class="choice-text">
+                            <span class="choice-title">Ro'yxatdan o'ting</span>
+                            <span class="choice-desc">Hisob yarating va buyurtma bering</span>
+                        </div>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="choice-arrow"><path d="M9 18l6-6-6-6"/></svg>
+                    </a>
+
+                    <a href="{% url 'login' %}?next={{ request.get_full_path }}" class="auth-choice-btn secondary">
+                        <div class="choice-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+                        </div>
+                        <div class="choice-text">
+                            <span class="choice-title">Kirish</span>
+                            <span class="choice-desc">Mavjud hisobingiz bilan kiring</span>
+                        </div>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="choice-arrow"><path d="M9 18l6-6-6-6"/></svg>
+                    </a>
+
+                    <div class="choice-divider"><span>yoki</span></div>
+
+                    {% if settings %}
+                    <a href="https://t.me/{{ settings.telegram_username }}?text=Salom!%20Ushbu%20soatni%20buyurtma%20qilmoqchiman:%20{{ request.build_absolute_uri }}"
+                       target="_blank" class="auth-choice-btn telegram">
+                        <div class="choice-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.141.121.099.154.232.17.325.015.093.034.305.019.471z"/></svg>
+                        </div>
+                        <div class="choice-text">
+                            <span class="choice-title">Telegram orqali</span>
+                            <span class="choice-desc">Adminga to'g'ridan-to'g'ri yozing</span>
+                        </div>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="choice-arrow"><path d="M9 18l6-6-6-6"/></svg>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+            <!-- Order Form (for logged-in users) -->
             <div class="order-form-container" id="orderFormContainer">
                 <div class="modal-header">
                     <div class="modal-icon">
@@ -305,6 +379,7 @@
                 </div>
                 <button class="btn btn-outline" id="closeSuccess">Yopish</button>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>

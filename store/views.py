@@ -1,11 +1,14 @@
 """
 IBT Watches - Views
 """
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 from .models import Watch, Category, Brand, Order, SiteSettings
 from .telegram_bot import send_order_to_telegram
@@ -209,6 +212,99 @@ def search_watches(request):
     } for w in watches]
     
     return JsonResponse({'results': results})
+
+
+# ============ Auth Views ============
+
+def register_view(request):
+    """Ro'yxatdan o'tish"""
+    if request.user.is_authenticated:
+        return redirect('home')
+
+    if request.method == 'POST':
+        username = request.POST.get('username', '').strip()
+        first_name = request.POST.get('first_name', '').strip()
+        phone = request.POST.get('phone', '').strip()
+        password1 = request.POST.get('password1', '')
+        password2 = request.POST.get('password2', '')
+        next_url = request.POST.get('next', '/')
+
+        errors = {}
+
+        if len(username) < 3:
+            errors['username'] = "Login kamida 3 ta belgidan iborat bo'lishi kerak"
+        elif User.objects.filter(username=username).exists():
+            errors['username'] = "Bu login band, boshqasini tanlang"
+
+        if len(first_name) < 2:
+            errors['first_name'] = "Ismingizni kiriting"
+
+        if len(phone) < 9:
+            errors['phone'] = "To'g'ri telefon raqam kiriting"
+
+        if len(password1) < 6:
+            errors['password1'] = "Parol kamida 6 ta belgidan iborat bo'lishi kerak"
+        elif password1 != password2:
+            errors['password2'] = "Parollar mos kelmadi"
+
+        if errors:
+            return render(request, 'auth/register.html', {
+                'errors': errors,
+                'username': username,
+                'first_name': first_name,
+                'phone': phone,
+                'next': next_url,
+            })
+
+        user = User.objects.create_user(
+            username=username,
+            password=password1,
+            first_name=first_name,
+        )
+        # Save phone in last_name field (simple approach)
+        user.last_name = phone
+        user.save()
+
+        login(request, user)
+        messages.success(request, f"Xush kelibsiz, {first_name}! Muvaffaqiyatli ro'yxatdan o'tdingiz.")
+        return redirect(next_url if next_url else 'home')
+
+    next_url = request.GET.get('next', '/')
+    return render(request, 'auth/register.html', {'next': next_url})
+
+
+def login_view(request):
+    """Kirish"""
+    if request.user.is_authenticated:
+        return redirect('home')
+
+    if request.method == 'POST':
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '')
+        next_url = request.POST.get('next', '/')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            messages.success(request, f"Xush kelibsiz, {user.first_name or user.username}!")
+            return redirect(next_url if next_url else 'home')
+        else:
+            return render(request, 'auth/login.html', {
+                'error': "Login yoki parol noto'g'ri",
+                'username': username,
+                'next': next_url,
+            })
+
+    next_url = request.GET.get('next', '/')
+    return render(request, 'auth/login.html', {'next': next_url})
+
+
+def logout_view(request):
+    """Chiqish"""
+    logout(request)
+    messages.info(request, "Tizimdan muvaffaqiyatli chiqdingiz.")
+    return redirect('home')
 
 
 # Error handlers

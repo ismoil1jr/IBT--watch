@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Server Xatosi{% endblock %}
+
+{% block content %}
+<section class="error-section">
+    <div class="error-bg">
+        <div class="auth-gradient"></div>
+        <div class="auth-grid"></div>
+    </div>
+    <div class="error-container" data-aos="fade-up">
+        <div class="error-code">500</div>
+        <div class="error-watch-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 8v4m0 4h.01"/>
+            </svg>
+        </div>
+        <h1 class="error-title">Server Xatosi</h1>
+        <p class="error-desc">Nimadir noto'g'ri ketdi. Tez orada tuzatiladi. Iltimos, qaytadan urinib ko'ring.</p>
+        <div class="error-actions">
+            <a href="{% url 'home' %}" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Bosh Sahifaga
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
