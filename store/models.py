@@ -4,6 +4,7 @@ IBT Watches - Database Models
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 import random
 import string
 
@@ -242,6 +243,21 @@ class Order(models.Model):
             self.product_price = self.watch.price
             
         super().save(*args, **kwargs)
+
+
+class Favorite(models.Model):
+    """Sevimli soatlar"""
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favorites', verbose_name="Foydalanuvchi")
+    watch = models.ForeignKey(Watch, on_delete=models.CASCADE, related_name='favorites', verbose_name="Soat")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Sevimli"
+        verbose_name_plural = "Sevimlilar"
+        unique_together = ['user', 'watch']
+
+    def __str__(self):
+        return f"{self.user.first_name} — {self.watch.name}"
 
 
 class SiteSettings(models.Model):

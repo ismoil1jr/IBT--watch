@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mening Sevimlilarim{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="page-hero-bg">
+        <div class="hero-gradient"></div>
+        <div class="hero-pattern"></div>
+    </div>
+    <div class="page-hero-content">
+        <nav class="breadcrumb" data-aos="fade-down">
+            <a href="{% url 'home' %}">Bosh Sahifa</a>
+            <span class="separator">/</span>
+            <span class="current">Sevimlilar</span>
+        </nav>
+        <h1 class="page-title" data-aos="fade-up">
+            Mening <span class="accent">Sevimlilarim</span>
+        </h1>
+        <p class="page-desc" data-aos="fade-up" data-aos-delay="100">
+            Salom, <strong style="color:var(--color-primary)">{{ user.first_name|default:user.username }}</strong>!
+            {% if favorite_watches %}
+                {{ favorite_watches|length }} ta sevimli soat
+            {% endif %}
+        </p>
+    </div>
+</section>
+
+<section class="watches-section">
+    <div class="section-container">
+        {% if favorite_watches %}
+        <div class="watches-grid">
+            {% for watch in favorite_watches %}
+            <div class="watch-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+                <div class="watch-card-image">
+                    <div class="card-badge">
+                        {% if watch.is_new %}<span class="badge new">Yangi</span>{% endif %}
+                        {% if watch.discount_percent %}<span class="badge discount">-{{ watch.discount_percent }}%</span>{% endif %}
+                    </div>
+                    <button class="fav-btn active" data-id="{{ watch.pk }}" aria-label="Sevimlilardan olib tashlash">
+                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="currentColor"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                    </button>
+                    <a href="{% url 'product_detail' watch.pk %}">
+                        {% if watch.image %}<img src="{{ watch.image.url }}" alt="{{ watch.name }}" loading="lazy">{% endif %}
+                        <div class="card-overlay"><span class="view-btn">Batafsil</span></div>
+                    </a>
+                </div>
+                <a href="{% url 'product_detail' watch.pk %}" class="watch-card-info">
+                    <div class="watch-category">{{ watch.category.name }}</div>
+                    <h3 class="watch-name">{{ watch.name }}</h3>
+                    <div class="watch-price">
+                        {% if watch.old_price %}<span class="old-price">{{ watch.old_price|floatformat:0 }}</span>{% endif %}
+                        <span class="current-price">{{ watch.price|floatformat:0 }} so'm</span>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="profile-empty" data-aos="fade-up">
+            <div class="profile-empty-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </div>
+            <h3>Sevimli soatlar yo'q</h3>
+            <p>Yoqtirgan soatingiz ustidagi ❤ tugmasini bosing</p>
+            <a href="{% url 'all_watches' %}" class="btn btn-primary" style="margin-top:1.5rem">
+                Kolleksiyani Ko'rish
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

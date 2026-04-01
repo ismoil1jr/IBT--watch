@@ -16,29 +16,67 @@
     </div>
 </section>
 
-<section class="filters-section">
+<section class="filters-section" id="filtersSection">
     <div class="section-container">
-        <div class="filters-wrapper">
+
+        <!-- Desktop filter wrapper (always visible) -->
+        <div class="filters-wrapper desktop-filters">
             <div class="search-box">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 <input type="text" id="searchInput" placeholder="Qidirish..." value="{{ search_query }}">
             </div>
-            
             <div class="filter-tabs">
                 <button class="filter-btn {% if not current_category %}active{% endif %}" data-category="">Barchasi</button>
                 {% for cat in categories %}
                 <button class="filter-btn {% if current_category == cat.slug %}active{% endif %}" data-category="{{ cat.slug }}">{{ cat.name }}</button>
                 {% endfor %}
             </div>
-            
             <div class="gender-tabs">
                 <button class="gender-btn {% if not current_gender %}active{% endif %}" data-gender="">👫 Barchasi</button>
                 <button class="gender-btn {% if current_gender == 'male' %}active{% endif %}" data-gender="male">👨 Erkaklar</button>
                 <button class="gender-btn {% if current_gender == 'female' %}active{% endif %}" data-gender="female">👩 Ayollar</button>
             </div>
-            
             <div class="results-info"><span id="resultsCount">{{ watches.paginator.count }}</span> ta soat</div>
         </div>
+
+        <!-- Mobile compact bar -->
+        <div class="mobile-filter-bar">
+            <div class="search-box mobile-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" id="searchInputMobile" placeholder="Qidirish..." value="{{ search_query }}">
+            </div>
+            <button class="mobile-filter-toggle" id="mobileFilterToggle" aria-label="Filtr">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h18M7 12h10M11 20h2"/></svg>
+                <span class="mft-label">Filtr</span>
+                <span class="mft-badge" id="mftBadge" style="display:none">1</span>
+            </button>
+        </div>
+
+        <!-- Mobile filter panel (collapsible) -->
+        <div class="mobile-filter-panel" id="mobileFilterPanel">
+            <div class="mfp-section">
+                <p class="mfp-label">Kategoriya</p>
+                <div class="filter-tabs">
+                    <button class="filter-btn {% if not current_category %}active{% endif %}" data-category="">Barchasi</button>
+                    {% for cat in categories %}
+                    <button class="filter-btn {% if current_category == cat.slug %}active{% endif %}" data-category="{{ cat.slug }}">{{ cat.name }}</button>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="mfp-section">
+                <p class="mfp-label">Jinsi</p>
+                <div class="gender-tabs">
+                    <button class="gender-btn {% if not current_gender %}active{% endif %}" data-gender="">👫 Barchasi</button>
+                    <button class="gender-btn {% if current_gender == 'male' %}active{% endif %}" data-gender="male">👨 Erkaklar</button>
+                    <button class="gender-btn {% if current_gender == 'female' %}active{% endif %}" data-gender="female">👩 Ayollar</button>
+                </div>
+            </div>
+            <div class="mfp-results"><span id="resultsCountMobile">{{ watches.paginator.count }}</span> ta soat topildi</div>
+        </div>
+
+        <!-- Desktop results count -->
+        <div class="results-info desktop-only" style="display:none"><span id="resultsCount">{{ watches.paginator.count }}</span> ta soat</div>
+
     </div>
 </section>
 
@@ -47,22 +85,26 @@
         <div class="watches-grid" id="watchesGrid">
             {% for watch in watches %}
             <div class="watch-card" data-category="{{ watch.category.slug }}" data-gender="{{ watch.gender }}" data-name="{{ watch.name|lower }}">
-                <a href="{% url 'product_detail' watch.pk %}">
-                    <div class="watch-card-image">
-                        <div class="card-badge">
-                            {% if watch.is_new %}<span class="badge new">Yangi</span>{% endif %}
-                            {% if watch.discount_percent %}<span class="badge discount">-{{ watch.discount_percent }}%</span>{% endif %}
-                        </div>
+                <div class="watch-card-image">
+                    <div class="card-badge">
+                        {% if watch.is_new %}<span class="badge new">Yangi</span>{% endif %}
+                        {% if watch.discount_percent %}<span class="badge discount">-{{ watch.discount_percent }}%</span>{% endif %}
+                    </div>
+                    <button class="fav-btn {% if watch.pk in user_favorites %}active{% endif %}"
+                            data-id="{{ watch.pk }}" aria-label="Sevimlilarga qo'shish">
+                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="{% if watch.pk in user_favorites %}currentColor{% else %}none{% endif %}"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                    </button>
+                    <a href="{% url 'product_detail' watch.pk %}">
                         {% if watch.image %}<img src="{{ watch.image.url }}" alt="{{ watch.name }}" loading="lazy">{% endif %}
                         <div class="card-overlay"><span class="view-btn">Batafsil</span></div>
-                    </div>
-                    <div class="watch-card-info">
-                        <div class="watch-category">{{ watch.category.name }}</div>
-                        <h3 class="watch-name">{{ watch.name }}</h3>
-                        <div class="watch-price">
-                            {% if watch.old_price %}<span class="old-price">{{ watch.old_price|floatformat:0 }}</span>{% endif %}
-                            <span class="current-price">{{ watch.price|floatformat:0 }} so'm</span>
-                        </div>
+                    </a>
+                </div>
+                <a href="{% url 'product_detail' watch.pk %}" class="watch-card-info">
+                    <div class="watch-category">{{ watch.category.name }}</div>
+                    <h3 class="watch-name">{{ watch.name }}</h3>
+                    <div class="watch-price">
+                        {% if watch.old_price %}<span class="old-price">{{ watch.old_price|floatformat:0 }}</span>{% endif %}
+                        <span class="current-price">{{ watch.price|floatformat:0 }} so'm</span>
                     </div>
                 </a>
             </div>
@@ -85,40 +127,84 @@
 {% block extra_js %}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('searchInput');
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const genderBtns = document.querySelectorAll('.gender-btn');
     const watchCards = document.querySelectorAll('.watch-card');
-    const resultsCount = document.getElementById('resultsCount');
-    
     let currentCategory = '', currentGender = '', currentSearch = '';
-    
-    searchInput.addEventListener('input', e => { currentSearch = e.target.value.toLowerCase(); filterWatches(); });
-    
-    filterBtns.forEach(btn => btn.addEventListener('click', function() {
-        filterBtns.forEach(b => b.classList.remove('active'));
+
+    // --- Search inputs (desktop + mobile) ---
+    function syncSearch(val) {
+        currentSearch = val.toLowerCase();
+        const other = this === searchDesktop ? searchMobile : searchDesktop;
+        if (other) other.value = val;
+        filterWatches();
+    }
+
+    const searchDesktop = document.getElementById('searchInput');
+    const searchMobile  = document.getElementById('searchInputMobile');
+    if (searchDesktop) searchDesktop.addEventListener('input', function(){ currentSearch = this.value.toLowerCase(); if(searchMobile) searchMobile.value = this.value; filterWatches(); });
+    if (searchMobile)  searchMobile.addEventListener('input',  function(){ currentSearch = this.value.toLowerCase(); if(searchDesktop) searchDesktop.value = this.value; filterWatches(); });
+
+    // --- Filter & Gender buttons (all sets) ---
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
         currentCategory = this.dataset.category;
+        updateFilterBadge();
         filterWatches();
     }));
-    
-    genderBtns.forEach(btn => btn.addEventListener('click', function() {
-        genderBtns.forEach(b => b.classList.remove('active'));
+
+    document.querySelectorAll('.gender-btn').forEach(btn => btn.addEventListener('click', function() {
+        document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
         currentGender = this.dataset.gender;
+        updateFilterBadge();
         filterWatches();
     }));
-    
+
+    // --- Mobile filter toggle ---
+    const toggleBtn   = document.getElementById('mobileFilterToggle');
+    const filterPanel = document.getElementById('mobileFilterPanel');
+    if (toggleBtn && filterPanel) {
+        toggleBtn.addEventListener('click', function() {
+            filterPanel.classList.toggle('open');
+            toggleBtn.classList.toggle('active');
+        });
+    }
+
+    // --- Badge ---
+    function updateFilterBadge() {
+        const badge = document.getElementById('mftBadge');
+        if (!badge) return;
+        const count = (currentCategory ? 1 : 0) + (currentGender ? 1 : 0);
+        badge.textContent = count;
+        badge.style.display = count > 0 ? 'flex' : 'none';
+    }
+
+    // --- Filter logic ---
     function filterWatches() {
         let count = 0;
         watchCards.forEach(card => {
-            const cat = card.dataset.category, gen = card.dataset.gender, name = card.dataset.name;
-            const show = (!currentCategory || cat === currentCategory) && (!currentGender || gen === currentGender) && (!currentSearch || name.includes(currentSearch));
-            card.style.display = show ? 'block' : 'none';
+            const cat  = card.dataset.category;
+            const gen  = card.dataset.gender;
+            const name = card.dataset.name;
+            const show = (!currentCategory || cat === currentCategory)
+                      && (!currentGender   || gen === currentGender)
+                      && (!currentSearch   || name.includes(currentSearch));
+            card.style.display = show ? '' : 'none';
             if (show) count++;
         });
-        resultsCount.textContent = count;
+        ['resultsCount', 'resultsCountMobile'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = count;
+        });
     }
+
+    // Close panel when clicking outside
+    document.addEventListener('click', function(e) {
+        if (filterPanel && toggleBtn && !filterPanel.contains(e.target) && !toggleBtn.contains(e.target)) {
+            filterPanel.classList.remove('open');
+            toggleBtn.classList.remove('active');
+        }
+    });
 });
 </script>
 {% endblock %}

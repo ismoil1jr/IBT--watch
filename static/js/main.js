@@ -394,6 +394,40 @@
     
 });
 
+// ============ Favorite Toggle ============
+document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.fav-btn');
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+
+    const id = btn.dataset.id;
+    const csrfToken = getCookie('csrftoken');
+
+    fetch(`/api/favorite/${id}/`, {
+        method: 'POST',
+        headers: { 'X-CSRFToken': csrfToken, 'Content-Type': 'application/json' }
+    })
+    .then(r => {
+        if (r.status === 401) {
+            window.location.href = '/login/?next=' + window.location.pathname;
+            return null;
+        }
+        return r.json();
+    })
+    .then(data => {
+        if (!data) return;
+        if (data.success) {
+            btn.classList.toggle('active', data.action === 'added');
+            btn.classList.add('pop');
+            const svg = btn.querySelector('svg');
+            if (svg) svg.setAttribute('fill', data.action === 'added' ? 'currentColor' : 'none');
+            setTimeout(() => btn.classList.remove('pop'), 400);
+        }
+    })
+    .catch(() => {});
+});
+
 // ============ CSRF Token Helper for Django ============
 function getCookie(name) {
     let cookieValue = null;
