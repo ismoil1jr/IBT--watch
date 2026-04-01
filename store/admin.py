@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Category, Brand, Watch, WatchImage, Order, SiteSettings
+from .models import Category, Brand, Watch, WatchImage, Order, SiteSettings, Favorite
 
 try:
     from .telegram_bot import send_order_status_update
@@ -136,6 +136,12 @@ class SiteSettingsAdmin(admin.ModelAdmin):
     
     def has_delete_permission(self, request, obj=None):
         return False
+
+
+@admin.register(Favorite)
+class FavoriteAdmin(admin.ModelAdmin):
+    list_display = ['user', 'watch', 'created_at']
+    list_filter = ['created_at']
 
 
 admin.site.site_header = "I.B.T Watches Admin"

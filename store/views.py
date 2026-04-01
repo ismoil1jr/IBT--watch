@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-from .models import Watch, Category, Brand, Order, SiteSettings
+from .models import Watch, Category, Brand, Order, SiteSettings, Favorite
 from .telegram_bot import send_order_to_telegram
 
 
@@ -214,59 +214,83 @@ def search_watches(request):
     return JsonResponse({'results': results})
 
 
+# ============ Favorite & Profile Views ============
+
+@require_POST
+def toggle_favorite(request, pk):
+    """Sevimlilarga qo'shish/olib tashlash (AJAX)"""
+    if not request.user.is_authenticated:
+        return JsonResponse({'success': False, 'login_required': True}, status=401)
+
+    watch = get_object_or_404(Watch, pk=pk, is_active=True)
+    fav, created = Favorite.objects.get_or_create(user=request.user, watch=watch)
+
+    if not created:
+        fav.delete()
+        return JsonResponse({'success': True, 'action': 'removed', 'count': watch.favorites.count()})
+
+    return JsonResponse({'success': True, 'action': 'added', 'count': watch.favorites.count()})
+
+
+def profile_view(request):
+    """Profil — sevimli soatlar"""
+    if not request.user.is_authenticated:
+        return redirect(f'/login/?next=/profile/')
+
+    favorite_watches = Watch.objects.filter(
+        favorites__user=request.user, is_active=True
+    ).select_related('category', 'brand')
+
+    context = {
+        'favorite_watches': favorite_watches,
+    }
+    return render(request, 'profile.html', context)
+
+
 # ============ Auth Views ============
 
 def register_view(request):
-    """Ro'yxatdan o'tish"""
+    """Ro'yxatdan o'tish — faqat ism, telefon, parol"""
     if request.user.is_authenticated:
         return redirect('home')
 
     if request.method == 'POST':
-        username = request.POST.get('username', '').strip()
         first_name = request.POST.get('first_name', '').strip()
         phone = request.POST.get('phone', '').strip()
-        password1 = request.POST.get('password1', '')
-        password2 = request.POST.get('password2', '')
+        password = request.POST.get('password', '')
         next_url = request.POST.get('next', '/')
 
         errors = {}
 
-        if len(username) < 3:
-            errors['username'] = "Login kamida 3 ta belgidan iborat bo'lishi kerak"
-        elif User.objects.filter(username=username).exists():
-            errors['username'] = "Bu login band, boshqasini tanlang"
-
         if len(first_name) < 2:
             errors['first_name'] = "Ismingizni kiriting"
 
-        if len(phone) < 9:
+        clean_phone = phone.replace('+', '').replace(' ', '').replace('-', '')
+        if len(clean_phone) < 9:
             errors['phone'] = "To'g'ri telefon raqam kiriting"
+        elif User.objects.filter(username=clean_phone).exists():
+            errors['phone'] = "Bu telefon raqam allaqachon ro'yxatdan o'tgan"
 
-        if len(password1) < 6:
-            errors['password1'] = "Parol kamida 6 ta belgidan iborat bo'lishi kerak"
-        elif password1 != password2:
-            errors['password2'] = "Parollar mos kelmadi"
+        if len(password) < 6:
+            errors['password'] = "Parol kamida 6 ta belgidan iborat bo'lishi kerak"
 
         if errors:
             return render(request, 'auth/register.html', {
                 'errors': errors,
-                'username': username,
                 'first_name': first_name,
                 'phone': phone,
                 'next': next_url,
             })
 
         user = User.objects.create_user(
-            username=username,
-            password=password1,
+            username=clean_phone,
+            password=password,
             first_name=first_name,
+            last_name=phone,
         )
-        # Save phone in last_name field (simple approach)
-        user.last_name = phone
-        user.save()
 
         login(request, user)
-        messages.success(request, f"Xush kelibsiz, {first_name}! Muvaffaqiyatli ro'yxatdan o'tdingiz.")
+        messages.success(request, f"Xush kelibsiz, {first_name}!")
         return redirect(next_url if next_url else 'home')
 
     next_url = request.GET.get('next', '/')
@@ -283,7 +307,11 @@ def login_view(request):
         password = request.POST.get('password', '')
         next_url = request.POST.get('next', '/')
 
-        user = authenticate(request, username=username, password=password)
+        # Phone number → username
+        clean = username.replace('+', '').replace(' ', '').replace('-', '')
+        user = authenticate(request, username=clean, password=password)
+        if not user:
+            user = authenticate(request, username=username, password=password)
 
         if user is not None:
             login(request, user)
