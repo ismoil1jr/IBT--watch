@@ -236,29 +236,106 @@ ul { list-style: none; }
 .page-title .accent { background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .page-desc { font-size: 1.1rem; color: var(--color-text-muted); }
 
-/* Filters */
-.filters-section { padding: var(--space-md) 0; background: var(--color-bg-darker); border-bottom: 1px solid rgba(212, 175, 55, 0.1); position: sticky; top: 65px; z-index: 99; }
-@media (max-width: 576px) { .filters-section { top: 60px; } }
-.filters-wrapper { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md); }
-.search-box { position: relative; flex: 1; min-width: 250px; max-width: 400px; }
-.search-box svg { position: absolute; left: var(--space-sm); top: 50%; transform: translateY(-50%); width: 20px; height: 20px; color: var(--color-text-muted); }
-.search-box input { width: 100%; padding: var(--space-sm) var(--space-sm) var(--space-sm) 45px; background: var(--color-bg-card); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: var(--radius-sm); color: var(--color-text); font-size: 0.95rem; }
-.search-box input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); }
+/* ── Filters Section ───────────────────────────── */
+.filters-section {
+    background: var(--color-bg-darker);
+    border-bottom: 1px solid rgba(212,175,55,0.1);
+    position: sticky;
+    top: 65px;
+    z-index: 99;
+}
+
+/* Search box (shared) */
+.search-box { position: relative; }
+.search-box svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--color-text-muted); pointer-events: none; }
+.search-box input { width: 100%; padding: 0.7rem 0.8rem 0.7rem 42px; background: var(--color-bg-card); border: 1px solid rgba(212,175,55,0.2); border-radius: var(--radius-sm); color: var(--color-text); font-size: 0.9rem; font-family: inherit; }
+.search-box input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(212,175,55,0.08); }
 .search-box input::placeholder { color: var(--color-text-muted); }
-.search-clear { position: absolute; right: var(--space-sm); top: 50%; transform: translateY(-50%); color: var(--color-text-muted); }
-.search-clear:hover { color: var(--color-primary); }
-.filter-tabs, .gender-tabs { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
-.filter-btn, .gender-btn { padding: var(--space-xs) var(--space-sm); font-size: 0.85rem; font-weight: 500; color: var(--color-text-muted); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: var(--radius-sm); transition: var(--transition-normal); }
+
+/* Filter / Gender buttons */
+.filter-tabs, .gender-tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter-btn, .gender-btn { padding: 6px 14px; font-size: 0.82rem; font-weight: 500; color: var(--color-text-muted); border: 1px solid rgba(212,175,55,0.2); border-radius: 20px; background: transparent; transition: var(--transition-normal); white-space: nowrap; }
 .filter-btn:hover, .gender-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
-.filter-btn.active, .gender-btn.active { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-bg-dark); }
-.results-info { margin-left: auto; font-size: 0.9rem; color: var(--color-text-muted); }
+.filter-btn.active, .gender-btn.active { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-bg-dark); font-weight: 600; }
+
+/* Results info */
+.results-info { font-size: 0.88rem; color: var(--color-text-muted); white-space: nowrap; }
 .results-info span { color: var(--color-primary); font-weight: 600; }
 
+/* ── DESKTOP layout ───────────────────────────── */
+.desktop-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 14px 0; }
+.desktop-filters .search-box { flex: 1; min-width: 200px; max-width: 320px; }
+
+/* ── MOBILE bar & panel ───────────────────────── */
+.mobile-filter-bar { display: none; }
+.mobile-filter-panel { display: none; }
+
 @media (max-width: 768px) {
-    .filters-wrapper { flex-direction: column; align-items: stretch; }
-    .search-box { max-width: none; }
-    .filter-tabs, .gender-tabs { justify-content: center; }
-    .results-info { margin-left: 0; text-align: center; }
+    /* hide desktop, show mobile */
+    .desktop-filters { display: none; }
+    .filters-section { position: static; top: auto; }   /* scroll away naturally */
+
+    /* compact top bar */
+    .mobile-filter-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 0;
+    }
+    .mobile-search { flex: 1; }
+    .mobile-search input { font-size: 0.88rem; }
+
+    /* filter toggle button */
+    .mobile-filter-toggle {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 14px;
+        background: var(--color-bg-card);
+        border: 1px solid rgba(212,175,55,0.25);
+        border-radius: var(--radius-sm);
+        color: var(--color-text-muted);
+        font-size: 0.82rem;
+        font-weight: 500;
+        white-space: nowrap;
+        flex-shrink: 0;
+        position: relative;
+        transition: var(--transition-normal);
+    }
+    .mobile-filter-toggle svg { width: 16px; height: 16px; }
+    .mobile-filter-toggle.active,
+    .mobile-filter-toggle:hover { border-color: var(--color-primary); color: var(--color-primary); }
+    .mft-badge {
+        display: none;
+        position: absolute;
+        top: -6px; right: -6px;
+        width: 18px; height: 18px;
+        background: var(--color-primary);
+        color: var(--color-bg-dark);
+        border-radius: 50%;
+        font-size: 0.7rem;
+        font-weight: 700;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* collapsible panel */
+    .mobile-filter-panel {
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+        padding: 0;
+    }
+    .mobile-filter-panel.open {
+        max-height: 400px;
+        padding: 12px 0 16px;
+        border-top: 1px solid rgba(212,175,55,0.1);
+    }
+    .mfp-section { margin-bottom: 12px; }
+    .mfp-label { font-size: 0.75rem; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .mfp-results { font-size: 0.82rem; color: var(--color-text-muted); margin-top: 10px; }
+    .mfp-results span { color: var(--color-primary); font-weight: 600; }
 }
 
 /* Watches Section */
